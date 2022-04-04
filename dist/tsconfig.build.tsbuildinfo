@@ -6126,31 +6126,6 @@
         "signature": "c502b9f6426aeac389acfef64074df22a5388fc232b7e5d119982c285f5fb039",
         "affectsGlobalScope": false
       },
-      "../src/api/access-requests/dto/create-access-request.dto.ts": {
-        "version": "1bc53f4a61eb7f63667c537eb99eb0d0e0e7a7195ca6880d5e85b1ad75b0bbf2",
-        "signature": "a9e442fdd07bdd166fe7bb483eb1c474dd49c3bc4dc86b384578831fff4125d2",
-        "affectsGlobalScope": false
-      },
-      "../src/api/access-requests/dto/update-access-request.dto.ts": {
-        "version": "23149c4c48db6ba0a082e96389dc9cd2ce96de2140787843902aa6cdcae32a70",
-        "signature": "7b7a05636463363f9edc22307d9e04615858084f124cd79e6fcfa9d1e585670d",
-        "affectsGlobalScope": false
-      },
-      "../src/api/access-requests/access-requests.service.ts": {
-        "version": "ec910cd92fe484389bdb10e5cf808c5d1586387a49f9a8d90a8ab2b4800625cc",
-        "signature": "17848411317f19d74e3526ee36c5d2324479710bda5f8af3cf7deb35c31267bf",
-        "affectsGlobalScope": false
-      },
-      "../src/api/access-requests/access-requests.controller.ts": {
-        "version": "50db7cdd03e664aa10e79bbc8059d0b066d4f486b844d5dc10707ff4cb31aa96",
-        "signature": "fed5293fc29b74bb0976388d1416d5a26c76a293a78e09cdbd9629c9ac43269a",
-        "affectsGlobalScope": false
-      },
-      "../src/api/access-requests/access-requests.module.ts": {
-        "version": "eb31d48075168b61cdb70774edda2f2c915a68d52c50d892cb65959f75e5edcf",
-        "signature": "142d654ca3ed07cf42ef10daa3017ac6225b570f71509e4d85a87c3e46b49724",
-        "affectsGlobalScope": false
-      },
       "../src/api/billings/dto/create-billing.dto.ts": {
         "version": "d21a77bb50f26d75d91bb17e673ee3ffae53657d5af5dc9fde9d248f9094884e",
         "signature": "f252fede316ec06a4506c316fe1c940a4375d335704897180c796b8d7aaddc55",
@@ -6257,7 +6232,7 @@
         "affectsGlobalScope": false
       },
       "../src/app.module.ts": {
-        "version": "36a1b255587ba3c0ae2e2c54cb31a90d539d7633d6c535db9e51337b8f0b66db",
+        "version": "4bbaad8b3fc761c35a83e7b4d87ccf505c840f34789824d12374bc2de9ca7b5d",
         "signature": "0a744267a9fb3a54ed7190e80bdb6d27c55acf3ccccf77039903a6f494605ec6",
         "affectsGlobalScope": false
       },
@@ -6939,11 +6914,6 @@
       "../src/main.ts": {
         "version": "454af5f3383954aeb4fdd9eb86e67bbcba203df0d1ec730fed1f7ce516fe4e22",
         "signature": "a7536941d46b98ed73017deeeb04d9e927dafb5dff305319142e42417f4627f1",
-        "affectsGlobalScope": false
-      },
-      "../src/api/access-requests/entities/access-request.entity.ts": {
-        "version": "65823afd3b64738a842f5eb105f5f00fff91564d2c63dd6ebbec73125a888fa9",
-        "signature": "4b30d848b183b0a075d1b1e60e9ccf66a1c856c1df9809d0e10ece78fda56202",
         "affectsGlobalScope": false
       },
       "../src/api/analysis-dashboard/entities/analysis-dashboard.entity.ts": {
@@ -12210,26 +12180,6 @@
         "../node_modules/typeorm/metadata/relationmetadata.d.ts",
         "../node_modules/typeorm/query-runner/queryrunner.d.ts"
       ],
-      "../src/api/access-requests/access-requests.controller.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/api/access-requests/access-requests.service.ts",
-        "../src/api/access-requests/dto/create-access-request.dto.ts",
-        "../src/api/access-requests/dto/update-access-request.dto.ts"
-      ],
-      "../src/api/access-requests/access-requests.module.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/api/access-requests/access-requests.controller.ts",
-        "../src/api/access-requests/access-requests.service.ts"
-      ],
-      "../src/api/access-requests/access-requests.service.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/api/access-requests/dto/create-access-request.dto.ts",
-        "../src/api/access-requests/dto/update-access-request.dto.ts"
-      ],
-      "../src/api/access-requests/dto/update-access-request.dto.ts": [
-        "../node_modules/@nestjs/swagger/index.d.ts",
-        "../src/api/access-requests/dto/create-access-request.dto.ts"
-      ],
       "../src/api/analysis-dashboard/analysis-dashboard.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/config/index.d.ts",
@@ -12700,7 +12650,6 @@
         "../node_modules/@types/node/path.d.ts",
         "../node_modules/nestjs-i18n/dist/index.d.ts",
         "../node_modules/typeorm-naming-strategies/index.d.ts",
-        "../src/api/access-requests/access-requests.module.ts",
         "../src/api/analysis-dashboard/analysis-dashboard.module.ts",
         "../src/api/auth/auth.module.ts",
         "../src/api/billings/billings.module.ts",
@@ -17892,19 +17841,6 @@
         "../node_modules/typeorm/metadata/relationmetadata.d.ts",
         "../node_modules/typeorm/query-runner/queryrunner.d.ts"
       ],
-      "../src/api/access-requests/access-requests.controller.ts": [
-        "../src/api/access-requests/access-requests.service.ts",
-        "../src/api/access-requests/dto/create-access-request.dto.ts",
-        "../src/api/access-requests/dto/update-access-request.dto.ts"
-      ],
-      "../src/api/access-requests/access-requests.service.ts": [
-        "../src/api/access-requests/dto/create-access-request.dto.ts",
-        "../src/api/access-requests/dto/update-access-request.dto.ts"
-      ],
-      "../src/api/access-requests/dto/update-access-request.dto.ts": [
-        "../node_modules/@nestjs/common/index.d.ts",
-        "../src/api/access-requests/dto/create-access-request.dto.ts"
-      ],
       "../src/api/analysis-dashboard/analysis-dashboard.controller.ts": [
         "../node_modules/eventemitter2/eventemitter2.d.ts",
         "../src/api/analysis-dashboard/analysis-dashboard.service.ts",
@@ -19522,12 +19458,6 @@
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.scripthost.d.ts",
       "../node_modules/typescript/lib/lib.webworker.importscripts.d.ts",
-      "../src/api/access-requests/access-requests.controller.ts",
-      "../src/api/access-requests/access-requests.module.ts",
-      "../src/api/access-requests/access-requests.service.ts",
-      "../src/api/access-requests/dto/create-access-request.dto.ts",
-      "../src/api/access-requests/dto/update-access-request.dto.ts",
-      "../src/api/access-requests/entities/access-request.entity.ts",
       "../src/api/analysis-dashboard/analysis-dashboard.controller.ts",
       "../src/api/analysis-dashboard/analysis-dashboard.module.ts",
       "../src/api/analysis-dashboard/analysis-dashboard.service.ts",

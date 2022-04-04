@@ -45,7 +45,6 @@ const middlewares_1 = require("./middlewares");
 const role_module_1 = require("./api/role/role.module");
 const institutions_module_1 = require("./api/estates/institutions.module");
 const institution_users_module_1 = require("./api/estate-users/institution-users.module");
-const access_requests_module_1 = require("./api/access-requests/access-requests.module");
 const billings_module_1 = require("./api/billings/billings.module");
 const settings_module_1 = require("./api/settings/settings.module");
 const permissions_module_1 = require("./api/permissions/permissions.module");
@@ -231,7 +230,6 @@ AppModule = AppModule_1 = __decorate([
             role_module_1.RoleModule,
             institutions_module_1.InstitutionsModule,
             institution_users_module_1.InstitutionUsersModule,
-            access_requests_module_1.AccessRequestsModule,
             billings_module_1.BillingsModule,
             settings_module_1.SettingsModule,
             permissions_module_1.PermissionsModule,

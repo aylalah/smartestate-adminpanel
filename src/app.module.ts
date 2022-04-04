@@ -44,7 +44,6 @@ import { ShutdownMiddleware } from './middlewares';
 import { RoleModule } from './api/role/role.module';
 import { InstitutionsModule } from './api/estates/institutions.module';
 import { InstitutionUsersModule } from './api/estate-users/institution-users.module';
-import { AccessRequestsModule } from './api/access-requests/access-requests.module';
 import { BillingsModule } from './api/billings/billings.module';
 import { SettingsModule } from './api/settings/settings.module';
 import { PermissionsModule } from './api/permissions/permissions.module';
@@ -230,7 +229,6 @@ import { AnalysisDashboardModule } from './api/analysis-dashboard/analysis-dashb
     RoleModule,
     InstitutionsModule,
     InstitutionUsersModule,
-    AccessRequestsModule,
     BillingsModule,
     SettingsModule,
     PermissionsModule,
