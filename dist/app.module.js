@@ -158,7 +158,7 @@ AppModule = AppModule_1 = __decorate([
                     },
                     synchronize: configService.get('DB_SYNC'),
                     logging: configService.get('DB_LOG'),
-                    entities: ['dist/api/**/*.entity.js'],
+                    entities: ['dist/api/**/*.entity{.ts,.js}'],
                     cli: {
                         entitiesDir: 'src/api/**/*.entity.ts',
                     },
