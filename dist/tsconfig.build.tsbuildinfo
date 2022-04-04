@@ -6232,7 +6232,7 @@
         "affectsGlobalScope": false
       },
       "../src/app.module.ts": {
-        "version": "4bbaad8b3fc761c35a83e7b4d87ccf505c840f34789824d12374bc2de9ca7b5d",
+        "version": "277953d3b947052f2470fa1afdfadd3b0151900df295842757902a73aed7f4bf",
         "signature": "0a744267a9fb3a54ed7190e80bdb6d27c55acf3ccccf77039903a6f494605ec6",
         "affectsGlobalScope": false
       },
