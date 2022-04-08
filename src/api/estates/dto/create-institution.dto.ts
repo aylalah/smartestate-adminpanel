@@ -15,10 +15,10 @@ export class CreateInstitutionDto {
     @ApiProperty()
     estate_name: string;
 
-    @IsString()
-    @Length(1, 100)
-    @ApiProperty()
-    estate_code: string;
+    // @IsString()
+    // @Length(1, 100)
+    // @ApiProperty()
+    // estate_code: string;
 
     @IsOptional()
     @IsString()
@@ -35,9 +35,22 @@ export class CreateInstitutionDto {
     @IsOptional()
     @IsName()
     @IsString()
+    @Length(1, 100)
+    @ApiProperty()
+    contact_person_first_name: string;
+
+    @IsOptional()
+    @IsName()
+    @IsString()
+    @Length(1, 100)
+    @ApiProperty()
+    contact_person_last_name: string;
+
+    @IsOptional()
+    @IsString()
     @Length(1, 50)
     @ApiProperty()
-    web_url: string;
+    website_name: string;
 
     @IsOptional()
     @IsString()

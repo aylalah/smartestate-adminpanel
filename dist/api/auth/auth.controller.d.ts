@@ -12,13 +12,13 @@ export declare class AuthController {
     private readonly eventEmitter;
     private readonly jwtService;
     constructor(userService: UserService, mailService: MailService, authService: AuthService, eventEmitter: EventEmitter2, jwtService: JwtService);
-    register(user: RegisterUserDto): Promise<Error | {
+    register(user: RegisterUserDto): Promise<{
         status: string;
         title: string;
         message: string;
         data: any;
         meta: any;
-    }>;
+    } | Error>;
     login(user: LoginUserDto, authUser: User): Promise<{
         status: string;
         title: string;

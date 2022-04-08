@@ -18,13 +18,13 @@ export declare class UserController {
         message: string;
         fileUrl: any;
     }>;
-    create(createUserDto: CreateUserDto, authUser: User): Promise<Error | {
+    create(createUserDto: CreateUserDto, authUser: User): Promise<{
         status: string;
         title: string;
         message: string;
         data: any;
         meta: any;
-    }>;
+    } | Error>;
     search(role?: any, query?: string, perPage?: number): Promise<{
         status: string;
         title: string;

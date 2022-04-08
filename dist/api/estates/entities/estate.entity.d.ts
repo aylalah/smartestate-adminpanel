@@ -4,11 +4,14 @@ export declare class Institution {
     estate_name?: string;
     estate_code?: string;
     estate_slug?: string;
+    contact_person?: string;
     phone_number?: string;
     email?: string;
     email_valid?: boolean;
+    base_url?: string;
     api_url?: string;
     web_url?: string;
+    db_name?: string;
     plan?: string;
     address?: string;
     state?: string;

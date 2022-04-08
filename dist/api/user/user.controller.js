@@ -143,7 +143,11 @@ let UserController = class UserController {
             updated_at: timeStamp,
             updated_by: authUser.id,
         });
-        const res = this.mailService.welcomeUser({
+        await this.eventEmitter.emit(utils_1.Event.NEVER_BOUNCE_VERIFY, { user: newUser });
+        await this.eventEmitter.emit(utils_1.Event.USER_AFTER_REGISTER, {
+            user: Object.assign(Object.assign({}, newUser), { password: null }),
+        });
+        const res = await this.mailService.welcomeUser({
             id: newUser.id,
             first_name,
             last_name,
@@ -155,10 +159,6 @@ let UserController = class UserController {
             user_code: userCustomerId,
             role: newUser.role_id,
             password: password
-        });
-        this.eventEmitter.emit(utils_1.Event.NEVER_BOUNCE_VERIFY, { user: newUser });
-        this.eventEmitter.emit(utils_1.Event.USER_AFTER_REGISTER, {
-            user: Object.assign(Object.assign({}, newUser), { password: null }),
         });
         return utils_1.success({
             user: {

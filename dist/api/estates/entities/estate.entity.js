@@ -31,6 +31,10 @@ __decorate([
     __metadata("design:type", String)
 ], Institution.prototype, "estate_slug", void 0);
 __decorate([
+    typeorm_1.Column('varchar', { name: 'contact_person', nullable: true, length: 15 }),
+    __metadata("design:type", String)
+], Institution.prototype, "contact_person", void 0);
+__decorate([
     typeorm_1.Column('varchar', { name: 'phone_number', nullable: true, length: 15 }),
     __metadata("design:type", String)
 ], Institution.prototype, "phone_number", void 0);
@@ -43,6 +47,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Institution.prototype, "email_valid", void 0);
 __decorate([
+    typeorm_1.Column('varchar', { name: 'base_url', nullable: true, length: 100 }),
+    __metadata("design:type", String)
+], Institution.prototype, "base_url", void 0);
+__decorate([
     typeorm_1.Column('varchar', { name: 'api_url', nullable: true, length: 100 }),
     __metadata("design:type", String)
 ], Institution.prototype, "api_url", void 0);
@@ -50,6 +58,10 @@ __decorate([
     typeorm_1.Column('varchar', { name: 'web_url', nullable: true, length: 100 }),
     __metadata("design:type", String)
 ], Institution.prototype, "web_url", void 0);
+__decorate([
+    typeorm_1.Column('varchar', { name: 'db_name', nullable: true, length: 100 }),
+    __metadata("design:type", String)
+], Institution.prototype, "db_name", void 0);
 __decorate([
     typeorm_1.Column('varchar', { name: 'plan', nullable: true, length: 30 }),
     __metadata("design:type", String)

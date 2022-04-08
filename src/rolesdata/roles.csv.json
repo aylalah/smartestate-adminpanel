@@ -11,5 +11,19 @@
 		"updated_at" : "2022-02-24 11:12:10",
 		"timestamp" : "2022-02-24 10:13:52.356748",
 		"slug" : "super_admin"
+	},
+
+	{
+		"id" : "2",
+		"role_name" : "Estate Admin",
+		"user_type" : "admin_portal",
+		"description" : "Admin Portal Estate Admin",
+		"status" : "2",
+		"created_by" : "0a4ce8d5-2466-4660-930f-49252d4df59f",
+		"updated_by" : null,
+		"created_at" : "2022-02-24",
+		"updated_at" : "2022-02-24 11:12:10",
+		"timestamp" : "2022-02-24 10:13:52.356748",
+		"slug" : "estate_admin"
 	}
 ]
