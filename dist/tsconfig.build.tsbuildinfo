@@ -6107,7 +6107,7 @@
         "affectsGlobalScope": false
       },
       "../src/api/estates/institutions.controller.ts": {
-        "version": "ae6161236186e321a0ab5259eac94c2ed262d9264789eedc8509194336918f2d",
+        "version": "6e8ed9b6f7f06c14994d0b2b210f65e12d224ce75b8753f045f0f0d1826168c6",
         "signature": "053db1a22327314d1bafb4e7a584f5895279427886955868f16f0af594d53cd9",
         "affectsGlobalScope": false
       },

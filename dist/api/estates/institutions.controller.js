@@ -22,8 +22,9 @@ const decorators_1 = require("../../decorators");
 const utils_1 = require("../../utils");
 const user_1 = require("../user");
 const swagger_1 = require("@nestjs/swagger");
-const eventemitter2_1 = require("eventemitter2");
 const typeorm_1 = require("typeorm");
+const eventemitter2_1 = require("eventemitter2");
+const typeorm_2 = require("typeorm");
 const moment = require("moment");
 const institution_users_service_1 = require("../estate-users/institution-users.service");
 const puppeteer = require('puppeteer');
@@ -114,7 +115,7 @@ let InstitutionsController = class InstitutionsController {
         let errorStauts;
         const dbName = `baloshsmart_${website_name}_db`;
         try {
-            baloshsmart_db = true;
+            baloshsmart_db = await typeorm_1.getManager().query(`CREATE DATABASE ${dbName}`);
         }
         catch (e) {
             return utils_1.error('Something went wrong', 'Cant create database; database exists');
@@ -218,7 +219,7 @@ let InstitutionsController = class InstitutionsController {
                 'account_name',
                 'state',
                 'lga',
-            ].map((column) => ({ [column]: typeorm_1.Like(`%${query}%`) })),
+            ].map((column) => ({ [column]: typeorm_2.Like(`%${query}%`) })),
             skip: 0,
             take: perPage,
         });

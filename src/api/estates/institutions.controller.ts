@@ -177,8 +177,7 @@ export class InstitutionsController {
     const dbName = `baloshsmart_${website_name}_db`
   
     try {
-      baloshsmart_db = true
-      // await getManager().query(`CREATE DATABASE ${dbName}`);
+      baloshsmart_db = await getManager().query(`CREATE DATABASE ${dbName}`);
    }
    catch(e){
      return error(
