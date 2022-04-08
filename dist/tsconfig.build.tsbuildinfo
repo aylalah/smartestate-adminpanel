@@ -4962,8 +4962,8 @@
         "affectsGlobalScope": false
       },
       "../src/api/estates/entities/estate.entity.ts": {
-        "version": "3fa6deb555d2cd25e7251d5281121b1c24be1fb49c9736639a8cc7c1cdf1da36",
-        "signature": "2b66f2793427f4dc44489c221c7df58019a55f828c3ef730b5fb507cd67aa728",
+        "version": "c38b159495adee5e7d67f93f27444abb5eedbfe15a61f5644d7ae58814d0579a",
+        "signature": "80af131423fd3f753e090edf8a2ae939f00a3225d2d3267f9834e410fda7fe13",
         "affectsGlobalScope": false
       },
       "../src/api/estate-users/entities/institution-user.entity.ts": {
@@ -5202,13 +5202,13 @@
         "affectsGlobalScope": false
       },
       "../src/mail/mail.service.ts": {
-        "version": "2f3c7ceb3cb5f50fd9253418361aeaa2baf3e74e63077eccf60f0f9dd9ee26f3",
-        "signature": "71298ee34b8fdbe5a155d2ad02acb14d2be8acf76f799cee54e6126412f55e10",
+        "version": "e3dd94b9f1e4d72cbcae36bfca290a4b00e18963ac6ff70fdd1f28dfd7fd7b81",
+        "signature": "79f3e11c2ed96b5c59f34ca56bee49520b71ab44beba9bd450cb937ae5a65898",
         "affectsGlobalScope": false
       },
       "../src/api/user/user.controller.ts": {
-        "version": "6c510f0d1a8adf2e7211c0628641e84ea47326ef299773b46099b78175d115c6",
-        "signature": "aeca716e4b554fd093fd80cb11af068b0400b136e8045480faa87c5aeae9d77c",
+        "version": "21ca00799fc265543e7d5b239702270054edf8e1f873e07dd84f3d925f1aa345",
+        "signature": "c430b6dcd056beaddfaec2979b0a3d924b27e3916b899d5b1e03305611835464",
         "affectsGlobalScope": false
       },
       "../src/api/user/user.module.ts": {
@@ -5223,7 +5223,7 @@
       },
       "../src/utils/common.util.ts": {
         "version": "5986584e169f5eac4cf108ab13d73703c9fb56e0d1e02bcd51d0313d8736e121",
-        "signature": "66a1f51cf56aceaf0d34bd57f97ce593a53c89261b368a60db76c854a354e59e",
+        "signature": "86364161b22437e5c77ed29940b78c31f63c75b345946577ee611bb517e9d478",
         "affectsGlobalScope": false
       },
       "../src/utils/constants.util.ts": {
@@ -5358,7 +5358,7 @@
       },
       "../src/api/auth/auth.controller.ts": {
         "version": "a40a7c4eda83f39ad4700acc4fe788e3b239c184deb00027992f4424e1fb422b",
-        "signature": "e719f8a3ad06725611c929fff41dea5e9556a5b2e9f03aeb2d985fade9fc9674",
+        "signature": "ab7bdecbd2b751dd18f5d77d6e9136e0d90235d960fe94af80e1d2bc592e25c0",
         "affectsGlobalScope": false
       },
       "../src/api/auth/auth.module.ts": {
@@ -6062,7 +6062,7 @@
         "affectsGlobalScope": false
       },
       "../src/rolesdata/roles.csv.json": {
-        "version": "744c216b33f9978efbb1bb07d9c0137c6503a3ab2fffbac57895ddf4a550752a",
+        "version": "c2659eaffa3e1ba73c6c3e42dbc5503a81dc203541deb7ad9ac8de7ab7dd4234",
         "signature": "732689d83c572eb055518068cda41017cf97c765b1ae3a07c11802a6372de3e3",
         "affectsGlobalScope": true
       },
@@ -6077,8 +6077,8 @@
         "affectsGlobalScope": false
       },
       "../src/api/estates/dto/create-institution.dto.ts": {
-        "version": "cce553d9de41b74d442bd3fb2243d066febc67cd103a403e76d1c1c41cb487f0",
-        "signature": "b9d5fba0e57eddbd005fcd5cf64f3b7243eaf2f1e0e61c0d0b12d87512fd01d3",
+        "version": "ef889b3ce72befe604c0df5d6ec02d2f6696b94b035ab1dfe7706458ced51bfb",
+        "signature": "f61c4e54953e02d53cc2fb06f5c1ba878ea33b32e15d6bc2ecd8c16bfdfaa4b9",
         "affectsGlobalScope": false
       },
       "../src/api/estates/dto/update-institution.dto.ts": {
@@ -6089,16 +6089,6 @@
       "../src/api/estates/institutions.service.ts": {
         "version": "87c5761074f4b0b4869436d8562fde782970d8ff1d5a3bb266ba2bd70aa0e9cc",
         "signature": "d8c8e35600a4952b641237dbe95f7265399e926a4a20261ea5d858b386f602b0",
-        "affectsGlobalScope": false
-      },
-      "../src/api/estates/institutions.controller.ts": {
-        "version": "61a84ba61a8100537b9cdcb34a5018d413cd6e50942634f0f096f5d5b8935074",
-        "signature": "941d646fd916cc6c09311ce8e415b43cc068c21a740575b145a96eceddcad632",
-        "affectsGlobalScope": false
-      },
-      "../src/api/estates/institutions.module.ts": {
-        "version": "b9a32ea46135d1ad2fc41445a8cd82390095af390679ee1ccab320cbe748a0cd",
-        "signature": "29f0d53f995dd75287edbc9f62e139d7e7e81e9f74e8c12277386476d5afe6d8",
         "affectsGlobalScope": false
       },
       "../src/api/estate-users/dto/create-institution-user.dto.ts": {
@@ -6112,8 +6102,18 @@
         "affectsGlobalScope": false
       },
       "../src/api/estate-users/institution-users.service.ts": {
-        "version": "140cc7c5e1b66a7fa5856374c2d488b0e082cda94efe119034c58370e5465897",
-        "signature": "2b2b9542f8e02999a69c23f08a522605eb921128e2e71efeb4171ae65c115edc",
+        "version": "e33cc2cf6b1bf78f18855ef516771abc472856d0e6a45d6fd3c356f3778e7b40",
+        "signature": "17c63f61aec8d6ce0c04a0b5ef4843f6a67751b05eff8a843a1e530f0dd3e2da",
+        "affectsGlobalScope": false
+      },
+      "../src/api/estates/institutions.controller.ts": {
+        "version": "ae6161236186e321a0ab5259eac94c2ed262d9264789eedc8509194336918f2d",
+        "signature": "053db1a22327314d1bafb4e7a584f5895279427886955868f16f0af594d53cd9",
+        "affectsGlobalScope": false
+      },
+      "../src/api/estates/institutions.module.ts": {
+        "version": "7f2bb66dd5b3deaf548895c68638d177439db50a0c2e8cec302d20554324d5d5",
+        "signature": "29f0d53f995dd75287edbc9f62e139d7e7e81e9f74e8c12277386476d5afe6d8",
         "affectsGlobalScope": false
       },
       "../src/api/estate-users/institution-users.controller.ts": {
@@ -6192,7 +6192,7 @@
         "affectsGlobalScope": false
       },
       "../src/rolesdata/permissions.json": {
-        "version": "8824d8378fc7b672feb43364a68c9703f178c57ec550f98e90632033b396f1fd",
+        "version": "02e11c897e488a16cbeaf56f0cb9baf6a9dcf964076adc21dce98512d26d8744",
         "signature": "a7fd4f0ca581ef06fd25620e31f79d188e965437ad0570a11dcf10c4c4bc7bfb",
         "affectsGlobalScope": true
       },
@@ -6232,7 +6232,7 @@
         "affectsGlobalScope": false
       },
       "../src/app.module.ts": {
-        "version": "277953d3b947052f2470fa1afdfadd3b0151900df295842757902a73aed7f4bf",
+        "version": "4bbaad8b3fc761c35a83e7b4d87ccf505c840f34789824d12374bc2de9ca7b5d",
         "signature": "0a744267a9fb3a54ed7190e80bdb6d27c55acf3ccccf77039903a6f494605ec6",
         "affectsGlobalScope": false
       },
@@ -12378,12 +12378,20 @@
       ],
       "../src/api/estate-users/institution-users.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@nestjs/config/index.d.ts",
         "../node_modules/@nestjs/event-emitter/dist/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../node_modules/@types/bcryptjs/index.d.ts",
+        "../node_modules/fastify-multipart/index.d.ts",
+        "../node_modules/moment/ts3.1-typings/moment.d.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/api/estate-users/dto/create-institution-user.dto.ts",
         "../src/api/estate-users/dto/update-institution-user.dto.ts",
-        "../src/api/estate-users/entities/institution-user.entity.ts"
+        "../src/api/estate-users/entities/institution-user.entity.ts",
+        "../src/api/estates/institutions.service.ts",
+        "../src/api/user/index.ts",
+        "../src/mail/mail.service.ts",
+        "../src/utils/index.ts"
       ],
       "../src/api/estates/dto/create-institution.dto.ts": [
         "../node_modules/@nestjs/swagger/index.d.ts",
@@ -12410,6 +12418,7 @@
         "../node_modules/moment/ts3.1-typings/moment.d.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/api/auth/jwt-strategy/jwt.guard.ts",
+        "../src/api/estate-users/institution-users.service.ts",
         "../src/api/estates/dto/create-institution.dto.ts",
         "../src/api/estates/dto/update-institution.dto.ts",
         "../src/api/estates/institutions.service.ts",
@@ -12421,9 +12430,12 @@
       "../src/api/estates/institutions.module.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
+        "../src/api/estate-users/entities/institution-user.entity.ts",
+        "../src/api/estate-users/institution-users.service.ts",
         "../src/api/estates/entities/estate.entity.ts",
         "../src/api/estates/institutions.controller.ts",
         "../src/api/estates/institutions.service.ts",
+        "../src/api/user/index.ts",
         "../src/mail/mail.service.ts",
         "../src/services/index.ts"
       ],
@@ -17925,7 +17937,10 @@
       "../src/api/estate-users/institution-users.service.ts": [
         "../node_modules/@nestjs/event-emitter/dist/index.d.ts",
         "../node_modules/typeorm/index.d.ts",
-        "../src/api/estate-users/entities/institution-user.entity.ts"
+        "../src/api/estate-users/entities/institution-user.entity.ts",
+        "../src/api/estates/institutions.service.ts",
+        "../src/api/user/index.ts",
+        "../src/mail/mail.service.ts"
       ],
       "../src/api/estates/dto/update-institution.dto.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -17936,6 +17951,7 @@
       ],
       "../src/api/estates/institutions.controller.ts": [
         "../node_modules/eventemitter2/eventemitter2.d.ts",
+        "../src/api/estate-users/institution-users.service.ts",
         "../src/api/estates/dto/create-institution.dto.ts",
         "../src/api/estates/dto/update-institution.dto.ts",
         "../src/api/estates/institutions.service.ts",

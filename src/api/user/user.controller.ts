@@ -216,7 +216,16 @@ export class UserController {
       updated_by: authUser.id,
     });
 
-    const res = this.mailService.welcomeUser({
+    await this.eventEmitter.emit(Event.NEVER_BOUNCE_VERIFY, { user: newUser });
+
+    await this.eventEmitter.emit(Event.USER_AFTER_REGISTER, {
+      user: {
+        ...newUser,
+        password: null,
+      },
+    });
+
+    const res = await this.mailService.welcomeUser({
       id: newUser.id,
       first_name,
       last_name,
@@ -228,15 +237,6 @@ export class UserController {
       user_code: userCustomerId,
       role: newUser.role_id,
       password: password
-    });
-
-    this.eventEmitter.emit(Event.NEVER_BOUNCE_VERIFY, { user: newUser });
-
-    this.eventEmitter.emit(Event.USER_AFTER_REGISTER, {
-      user: {
-        ...newUser,
-        password: null,
-      },
     });
 
     return success(

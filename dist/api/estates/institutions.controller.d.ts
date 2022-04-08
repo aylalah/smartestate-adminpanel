@@ -3,12 +3,14 @@ import { CreateInstitutionDto } from './dto/create-institution.dto';
 import { UpdateInstitutionDto, StatusDto } from './dto/update-institution.dto';
 import { User } from '../user';
 import { EventEmitter2 } from 'eventemitter2';
+import { InstitutionUsersService } from 'src/api/estate-users/institution-users.service';
 import { MailService } from '../../mail/mail.service';
 export declare class InstitutionsController {
+    private readonly institutionUsersService;
     private readonly institutionsService;
     private readonly mailService;
     private readonly eventEmitter;
-    constructor(institutionsService: InstitutionsService, mailService: MailService, eventEmitter: EventEmitter2);
+    constructor(institutionUsersService: InstitutionUsersService, institutionsService: InstitutionsService, mailService: MailService, eventEmitter: EventEmitter2);
     uploadFileToAws(file: any): Promise<{
         status: number;
         message: string;

@@ -1,9 +1,10 @@
 export declare class CreateInstitutionDto {
     estate_name: string;
-    estate_code: string;
     phone_number: string;
     email: string;
-    web_url: string;
+    contact_person_first_name: string;
+    contact_person_last_name: string;
+    website_name: string;
     plan: string;
     address: string;
     state: string;

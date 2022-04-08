@@ -22,12 +22,6 @@ __decorate([
     __metadata("design:type", String)
 ], CreateInstitutionDto.prototype, "estate_name", void 0);
 __decorate([
-    class_validator_1.IsString(),
-    class_validator_1.Length(1, 100),
-    swagger_1.ApiProperty(),
-    __metadata("design:type", String)
-], CreateInstitutionDto.prototype, "estate_code", void 0);
-__decorate([
     class_validator_1.IsOptional(),
     class_validator_1.IsString(),
     class_validator_1.Length(1, 200),
@@ -45,10 +39,25 @@ __decorate([
     class_validator_1.IsOptional(),
     validation_util_1.IsName(),
     class_validator_1.IsString(),
+    class_validator_1.Length(1, 100),
+    swagger_1.ApiProperty(),
+    __metadata("design:type", String)
+], CreateInstitutionDto.prototype, "contact_person_first_name", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    validation_util_1.IsName(),
+    class_validator_1.IsString(),
+    class_validator_1.Length(1, 100),
+    swagger_1.ApiProperty(),
+    __metadata("design:type", String)
+], CreateInstitutionDto.prototype, "contact_person_last_name", void 0);
+__decorate([
+    class_validator_1.IsOptional(),
+    class_validator_1.IsString(),
     class_validator_1.Length(1, 50),
     swagger_1.ApiProperty(),
     __metadata("design:type", String)
-], CreateInstitutionDto.prototype, "web_url", void 0);
+], CreateInstitutionDto.prototype, "website_name", void 0);
 __decorate([
     class_validator_1.IsOptional(),
     class_validator_1.IsString(),

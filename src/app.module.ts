@@ -156,8 +156,7 @@ import { AnalysisDashboardModule } from './api/analysis-dashboard/analysis-dashb
         },
         synchronize: configService.get('DB_SYNC'),
         logging: configService.get('DB_LOG'),
-        // entities: ['dist/api/**/*.entity.js'],
-        entities:  ['dist/api/**/*.entity{.ts,.js}'],
+        entities: ['dist/api/**/*.entity.js'],
         cli: {
           entitiesDir: 'src/api/**/*.entity.ts',
         },

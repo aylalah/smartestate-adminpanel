@@ -30,13 +30,15 @@ import {
 } from '../../utils';
 import { User } from '../user';
 import { ApiBearerAuth, ApiBody, ApiConsumes } from '@nestjs/swagger';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository, getManager } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EventEmitter2 } from 'eventemitter2';
 import { ConfigService } from '@nestjs/config';
 import { MultipartFile } from 'fastify-multipart';
 import { IsNull, Like, Not } from 'typeorm';
+// import { DataSource } from "typeorm"
 import * as moment from "moment";
+import { InstitutionUsersService} from 'src/api/estate-users/institution-users.service';
 
 const puppeteer = require('puppeteer');
 const handlebars = require("handlebars");
@@ -54,8 +56,8 @@ import { MailService } from '../../mail/mail.service';
 @Controller('estates')
 export class InstitutionsController {
   constructor(
-    @Inject(forwardRef(() => InstitutionsService))
-    private readonly institutionsService: InstitutionsService,
+    @Inject(forwardRef(() => InstitutionUsersService)) private readonly institutionUsersService: InstitutionUsersService,
+    @Inject(forwardRef(() => InstitutionsService)) private readonly institutionsService: InstitutionsService,
     private readonly mailService: MailService,
     private readonly eventEmitter: EventEmitter2,
   ) {}
@@ -106,10 +108,12 @@ export class InstitutionsController {
 
     let {
       estate_name,
-      estate_code,
+      // estate_code,
       phone_number,
       email,
-      web_url,
+      contact_person_first_name,
+      contact_person_last_name,
+      website_name,
       plan,
       address,
       state,
@@ -122,7 +126,7 @@ export class InstitutionsController {
     } = createInstitutionDto;
 
     const existingInstitution = await this.institutionsService.institutionRepository.findOne({
-      select: ['id', 'estate_name', 'estate_code', 'email'],
+      select: ['id', 'estate_name', 'estate_code', 'plan', 'web_url', 'email'],
       where: [{estate_name: estate_name }],
     }) ?? null;
 
@@ -135,7 +139,7 @@ export class InstitutionsController {
        let estateCode = '' + randomDigits(5);
        const institutionIdExist = async (institution_code: string) => {
         const estate = await this.institutionsService.institutionRepository.findOne({
-          estate_code,
+          where: [{estate_code: estateCode }],
         });
         return !!estate?.estate_code;
       };
@@ -144,66 +148,148 @@ export class InstitutionsController {
         estateCode = '' + randomDigits(5);
       }
 
-      estate_code = ''+estateCode;
       const estate_slug = estate_name.replace(' ', "_");
-      const api_url =  `${process.env.APP_URL}/${estate_slug}`;
+      const api_url =  `${process.env.URL_PROTOCOL}${website_name}.${process.env.APP_PATH}`;
+      const web_url =  `${process.env.URL_PROTOCOL}${website_name}.${process.env.DOMAIN_NAME}`;
 
     let fileName = '';
     if (logo == '') {
        fileName = 'user.png';
     } else {
-      const lagoName = estate_name.replace(' ', "_")+`_${estate_code}`
+      const lagoName = estate_slug.replace(' ', "_")+`_${estateCode}`
       const base64Data = new Buffer.from(logo.replace(/^data:image\/\w+;base64,/, ""), 'base64');
       const type = logo.split(';')[0].split('/')[1];
       const uploaded = await this.uploadFileToAws({name: lagoName, type: type, data:base64Data});
       fileName = uploaded.fileUrl;
     }
 
-    const newInstitution = await this.institutionsService.create({
-      estate_name,
-      estate_code,
-      phone_number,
-      email,
-      web_url,
-      plan,
-      address,
-      state,
-      lga,
-      logo: fileName,
-      bank,
-      account_number,
-      account_name,
-      estate_slug,
-      api_url,
-      email_valid: false,
-      status: 0,
-      created_by: authUser.id,
-      created_at: todatsDate,
-      updated_at: todatsDate
-    });
+    const allCapsAlpha = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"]; 
+    const allLowerAlpha = [..."abcdefghijklmnopqrstuvwxyz"]; 
+    const allNumbers = [..."0123456789"];
 
-    const res = this.mailService.welcomeUser({
-      id: newInstitution.id,
-      estate_name,
-      phone_number,
-      email,
-      logo: fileName,
-      estate_code,
-    })
+    const base = [...allCapsAlpha, ...allNumbers, ...allLowerAlpha];
 
-    return success(
-      {
-        estate: {
-          institution_name: newInstitution.estate_name,
-          institution_code: newInstitution.estate_code,
-          email: newInstitution.email,
-          email_valid: newInstitution.email_valid,
-        },
-        estates: await this.institutionsService.findAll(),
-      },
-      'New estate',
-      'Estate successfuly created',
-    );
+    const api_token = [...Array(25)].map(i => base[Math.random()*base.length|0]).join('');
+
+    // Create DB:
+    let baloshsmart_db;
+    let errorStauts;
+    const dbName = `baloshsmart_${website_name}_db`
+  
+    try {
+      baloshsmart_db = true
+      // await getManager().query(`CREATE DATABASE ${dbName}`);
+   }
+   catch(e){
+     return error(
+       'Something went wrong',
+       'Cant create database; database exists',
+     );
+   }
+
+    if(baloshsmart_db){
+      const newInstitution = await this.institutionsService.create({
+        estate_name,
+        estate_code: estateCode,
+        phone_number,
+        email,
+        base_url: `${process.env.DOMAIN_NAME}`,
+        web_url,
+        db_name: dbName,
+        plan,
+        address,
+        state,
+        lga,
+        logo: fileName,
+        api_token,
+        bank,
+        account_number,
+        account_name,
+        estate_slug,
+        api_url,
+        email_valid: false,
+        status: 0,
+        created_by: authUser.id,
+        created_at: todatsDate,
+        updated_at: todatsDate
+      });
+
+      const estate = await this.institutionsService.findOne(newInstitution.id);
+
+      if(estate){ 
+
+        const userInfo = {
+          role_id: 2,
+          role: 'Estate Admin',
+          permission_id: '3f661651-2d29-4402-b838-ghui987try65',
+          permission: 'Estate Admin Maker',
+          first_name: contact_person_first_name,
+          last_name: contact_person_last_name,
+          username: `${contact_person_first_name}_${contact_person_last_name}`,
+          name: `${contact_person_first_name}_${contact_person_last_name}`,
+          email,
+          phone_number,
+          home_address: address,
+          state_of_residence: state,
+          lga,
+          estate_id: estate.id,
+          estate_name,
+          estate_code: estateCode,
+          account_name,
+          bank,
+          web_url,
+          created_by: authUser.id,
+          created_at: todatsDate,
+        };
+    
+        const newInstitutionUser = await this.institutionUsersService.createEstateUser(userInfo);
+
+        const res = await this.mailService.newInstitution({
+
+          estate_id: estate.id,
+          estate_name,
+          estate_code: estateCode,
+          name: `${authUser.first_name} ${authUser.last_name}`,
+          useremail: authUser.email,
+          email: email,
+          base_url: `${process.env.DOMAIN_NAME}`,
+          bank,
+          account_number,
+          account_name,
+          web_url,
+          address,
+          db_name: dbName,
+          plan,
+          api_token,
+          estate_slug,
+          api_url,
+        })
+    
+        return success(
+          {
+            estate: {
+              estate_name: newInstitution.estate_name,
+              estate_code: newInstitution.estate_code,
+              email: newInstitution.email,
+              email_valid: newInstitution.email_valid,
+            },
+            estates: await this.institutionsService.findAll(),
+          },
+          'New estate',
+          'Estate successfuly created',
+        );
+      }else{
+        return error(
+          'Something went wrong',
+          'Estate not created',
+        );
+      }
+    }else{
+      return error(
+        'Something went wrong',
+        errorStauts,
+      );
+    }
   }
 
   @Get('search')

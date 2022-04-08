@@ -32,6 +32,9 @@ import {
     @Column('varchar', { name: 'estate_slug', nullable: true, length: 100 })
     estate_slug?: string;
 
+    @Column('varchar', { name: 'contact_person', nullable: true, length: 15 })
+    contact_person?: string;
+
     @Column('varchar', { name: 'phone_number', nullable: true, length: 15 })
     phone_number?: string;
 
@@ -41,11 +44,17 @@ import {
     @Column('tinyint', { name: 'email_valid', nullable: true, width: 1 })
     email_valid?: boolean;
 
+    @Column('varchar', { name: 'base_url', nullable: true, length: 100 })
+    base_url?: string;
+
     @Column('varchar', { name: 'api_url', nullable: true, length: 100 })
     api_url?: string;
 
     @Column('varchar', { name: 'web_url', nullable: true, length: 100 })
     web_url?: string;
+
+    @Column('varchar', { name: 'db_name', nullable: true, length: 100 })
+    db_name?: string;
 
     @Column('varchar', { name: 'plan', nullable: true, length: 30 })
     plan?: string;

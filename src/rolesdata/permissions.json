@@ -30,5 +30,22 @@
 		"updated_at" : "2022-03-19 02:41:05",
 		"approved_at" : null,
 		"timestamp" : "2022-03-18 02:47:33.141866"
+	},
+
+	{
+		"id" : "3f661651-2d29-4402-b838-ghui987try65",
+		"role_id" : "2",
+		"permission_name" : "Estate Admin Maker",
+		"description" : "ok",
+		"slug" : "estate_admin_maker",
+		"module_access" : "[\"institution_management\", \"agent_management\"]",
+		"status" : "1",
+		"created_by" : "08e607b6-0539-4b38-9c98-d984e1278385",
+		"updated_by" : "08e607b6-0539-4b38-9c98-d984e1278385",
+		"approved_by" : null,
+		"created_at" : "2022-03-18",
+		"updated_at" : "2022-03-19 02:41:05",
+		"approved_at" : null,
+		"timestamp" : "2022-03-18 02:47:33.141866"
 	}
 ]

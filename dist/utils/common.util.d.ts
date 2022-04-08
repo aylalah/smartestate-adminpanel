@@ -34,6 +34,6 @@ export declare const rmDir: (path: string, callback: (e: any) => void) => void;
 export declare const mask: (val: string, use?: string) => string;
 export declare const makeFilter: (query: string, from: string, to: string, columns: string[]) => any[];
 export declare const generateTransactionReference: () => string;
-export declare const getTier: (user: User) => 1 | 0 | 2 | 3;
+export declare const getTier: (user: User) => 1 | 2 | 0 | 3;
 export declare const trimUser: (user: User) => {};
 export declare const prettyTimeLeft: (ms: number) => string;

@@ -25,6 +25,7 @@ const swagger_1 = require("@nestjs/swagger");
 const eventemitter2_1 = require("eventemitter2");
 const typeorm_1 = require("typeorm");
 const moment = require("moment");
+const institution_users_service_1 = require("../estate-users/institution-users.service");
 const puppeteer = require('puppeteer');
 const handlebars = require("handlebars");
 const AWS = require('aws-sdk');
@@ -37,7 +38,8 @@ let timeStamp = moment(new Date().getTime()).format("YYYY-MM-DD HH:mm:ss.SSS");
 let todatsDate = moment(new Date().getTime()).format("YYYY-MM-DD");
 const mail_service_1 = require("../../mail/mail.service");
 let InstitutionsController = class InstitutionsController {
-    constructor(institutionsService, mailService, eventEmitter) {
+    constructor(institutionUsersService, institutionsService, mailService, eventEmitter) {
+        this.institutionUsersService = institutionUsersService;
         this.institutionsService = institutionsService;
         this.mailService = mailService;
         this.eventEmitter = eventEmitter;
@@ -71,9 +73,9 @@ let InstitutionsController = class InstitutionsController {
     async create(createInstitutionDto, authUser) {
         var _a;
         console.log(createInstitutionDto);
-        let { estate_name, estate_code, phone_number, email, web_url, plan, address, state, lga, logo, bank, account_number, account_name, } = createInstitutionDto;
+        let { estate_name, phone_number, email, contact_person_first_name, contact_person_last_name, website_name, plan, address, state, lga, logo, bank, account_number, account_name, } = createInstitutionDto;
         const existingInstitution = (_a = await this.institutionsService.institutionRepository.findOne({
-            select: ['id', 'estate_name', 'estate_code', 'email'],
+            select: ['id', 'estate_name', 'estate_code', 'plan', 'web_url', 'email'],
             where: [{ estate_name: estate_name }],
         })) !== null && _a !== void 0 ? _a : null;
         if ((existingInstitution === null || existingInstitution === void 0 ? void 0 : existingInstitution.estate_name) === estate_name) {
@@ -82,66 +84,129 @@ let InstitutionsController = class InstitutionsController {
         let estateCode = '' + utils_1.randomDigits(5);
         const institutionIdExist = async (institution_code) => {
             const estate = await this.institutionsService.institutionRepository.findOne({
-                estate_code,
+                where: [{ estate_code: estateCode }],
             });
             return !!(estate === null || estate === void 0 ? void 0 : estate.estate_code);
         };
         while ((await institutionIdExist(estateCode)) === true) {
             estateCode = '' + utils_1.randomDigits(5);
         }
-        estate_code = '' + estateCode;
         const estate_slug = estate_name.replace(' ', "_");
-        const api_url = `${process.env.APP_URL}/${estate_slug}`;
+        const api_url = `${process.env.URL_PROTOCOL}${website_name}.${process.env.APP_PATH}`;
+        const web_url = `${process.env.URL_PROTOCOL}${website_name}.${process.env.DOMAIN_NAME}`;
         let fileName = '';
         if (logo == '') {
             fileName = 'user.png';
         }
         else {
-            const lagoName = estate_name.replace(' ', "_") + `_${estate_code}`;
+            const lagoName = estate_slug.replace(' ', "_") + `_${estateCode}`;
             const base64Data = new Buffer.from(logo.replace(/^data:image\/\w+;base64,/, ""), 'base64');
             const type = logo.split(';')[0].split('/')[1];
             const uploaded = await this.uploadFileToAws({ name: lagoName, type: type, data: base64Data });
             fileName = uploaded.fileUrl;
         }
-        const newInstitution = await this.institutionsService.create({
-            estate_name,
-            estate_code,
-            phone_number,
-            email,
-            web_url,
-            plan,
-            address,
-            state,
-            lga,
-            logo: fileName,
-            bank,
-            account_number,
-            account_name,
-            estate_slug,
-            api_url,
-            email_valid: false,
-            status: 0,
-            created_by: authUser.id,
-            created_at: todatsDate,
-            updated_at: todatsDate
-        });
-        const res = this.mailService.welcomeUser({
-            id: newInstitution.id,
-            estate_name,
-            phone_number,
-            email,
-            logo: fileName,
-            estate_code,
-        });
-        return utils_1.success({
-            estate: {
-                institution_name: newInstitution.estate_name,
-                institution_code: newInstitution.estate_code,
-                email: newInstitution.email,
-                email_valid: newInstitution.email_valid,
-            },
-            estates: await this.institutionsService.findAll(),
-        }, 'New estate', 'Estate successfuly created');
+        const allCapsAlpha = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+        const allLowerAlpha = [..."abcdefghijklmnopqrstuvwxyz"];
+        const allNumbers = [..."0123456789"];
+        const base = [...allCapsAlpha, ...allNumbers, ...allLowerAlpha];
+        const api_token = [...Array(25)].map(i => base[Math.random() * base.length | 0]).join('');
+        let baloshsmart_db;
+        let errorStauts;
+        const dbName = `baloshsmart_${website_name}_db`;
+        try {
+            baloshsmart_db = true;
+        }
+        catch (e) {
+            return utils_1.error('Something went wrong', 'Cant create database; database exists');
+        }
+        if (baloshsmart_db) {
+            const newInstitution = await this.institutionsService.create({
+                estate_name,
+                estate_code: estateCode,
+                phone_number,
+                email,
+                base_url: `${process.env.DOMAIN_NAME}`,
+                web_url,
+                db_name: dbName,
+                plan,
+                address,
+                state,
+                lga,
+                logo: fileName,
+                api_token,
+                bank,
+                account_number,
+                account_name,
+                estate_slug,
+                api_url,
+                email_valid: false,
+                status: 0,
+                created_by: authUser.id,
+                created_at: todatsDate,
+                updated_at: todatsDate
+            });
+            const estate = await this.institutionsService.findOne(newInstitution.id);
+            if (estate) {
+                const userInfo = {
+                    role_id: 2,
+                    role: 'Estate Admin',
+                    permission_id: '3f661651-2d29-4402-b838-ghui987try65',
+                    permission: 'Estate Admin Maker',
+                    first_name: contact_person_first_name,
+                    last_name: contact_person_last_name,
+                    username: `${contact_person_first_name}_${contact_person_last_name}`,
+                    name: `${contact_person_first_name}_${contact_person_last_name}`,
+                    email,
+                    phone_number,
+                    home_address: address,
+                    state_of_residence: state,
+                    lga,
+                    estate_id: estate.id,
+                    estate_name,
+                    estate_code: estateCode,
+                    account_name,
+                    bank,
+                    web_url,
+                    created_by: authUser.id,
+                    created_at: todatsDate,
+                };
+                const newInstitutionUser = await this.institutionUsersService.createEstateUser(userInfo);
+                const res = await this.mailService.newInstitution({
+                    estate_id: estate.id,
+                    estate_name,
+                    estate_code: estateCode,
+                    name: `${authUser.first_name} ${authUser.last_name}`,
+                    useremail: authUser.email,
+                    email: email,
+                    base_url: `${process.env.DOMAIN_NAME}`,
+                    bank,
+                    account_number,
+                    account_name,
+                    web_url,
+                    address,
+                    db_name: dbName,
+                    plan,
+                    api_token,
+                    estate_slug,
+                    api_url,
+                });
+                return utils_1.success({
+                    estate: {
+                        estate_name: newInstitution.estate_name,
+                        estate_code: newInstitution.estate_code,
+                        email: newInstitution.email,
+                        email_valid: newInstitution.email_valid,
+                    },
+                    estates: await this.institutionsService.findAll(),
+                }, 'New estate', 'Estate successfuly created');
+            }
+            else {
+                return utils_1.error('Something went wrong', 'Estate not created');
+            }
+        }
+        else {
+            return utils_1.error('Something went wrong', errorStauts);
+        }
     }
     async search(query, perPage = 12) {
         let estates;
@@ -380,8 +445,10 @@ __decorate([
 ], InstitutionsController.prototype, "remove", null);
 InstitutionsController = __decorate([
     common_1.Controller('estates'),
-    __param(0, common_1.Inject(common_1.forwardRef(() => institutions_service_1.InstitutionsService))),
-    __metadata("design:paramtypes", [institutions_service_1.InstitutionsService,
+    __param(0, common_1.Inject(common_1.forwardRef(() => institution_users_service_1.InstitutionUsersService))),
+    __param(1, common_1.Inject(common_1.forwardRef(() => institutions_service_1.InstitutionsService))),
+    __metadata("design:paramtypes", [institution_users_service_1.InstitutionUsersService,
+        institutions_service_1.InstitutionsService,
         mail_service_1.MailService,
         eventemitter2_1.EventEmitter2])
 ], InstitutionsController);
